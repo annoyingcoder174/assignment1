@@ -96,9 +96,15 @@ app.get('/members', isAuthenticated, (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
+    req.session.destroy(err => {
+        if (err) {
+            return res.send("Error logging out");
+        }
+        res.clearCookie('connect.sid'); // <- This line is important!
+        res.redirect('/');
+    });
 });
+
 
 app.use((req, res) => {
     res.status(404).sendFile(__dirname + '/views/404.html');
