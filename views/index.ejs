@@ -1,0 +1,13 @@
+<%- include("templates/header") %>
+
+    <div class="text-center">
+        <h1>Welcome to Assignment 2</h1>
+        <p>This site uses EJS templates and Bootstrap.</p>
+        <% if (user) { %>
+            <p>Hello, <%= user.name %>!</p>
+            <% } else { %>
+                <p>Please log in or sign up to access members area.</p>
+                <% } %>
+    </div>
+
+    <%- include("templates/footer") %>
